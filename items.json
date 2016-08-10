@@ -1,0 +1,34 @@
+[ 
+	{
+		"text": "First item with custom name", 
+		"done": "false",
+		"comments": [
+			{
+				"author": "olga",
+				"text": "Lorem Ipsum elkgjnwelfq qekfmqlwkfm lefmlqkwm"
+			},
+			{
+				"author": "nikita",
+				"text": "Lorem Ipsum eaeg qaeglknln qaelgknlk qglknlknqeg qkneglkn w;glknlkn qg;lknlkjn"
+			}
+		]
+	},
+	{
+		"text": "Second item is active",
+		"done": false,
+		"comments": [
+			{
+				"author": "olga",
+				"text": "Lorem Ipsum elkgjnwelfq qekfmqlwkfm lefmlqkwm"
+			},
+			{
+				"author": "nikita",
+				"text": "Lorem Ipsum eaeg qaeglknln qaelgknlk qglknlknqeg qkneglkn w;glknlkn qg;lknlkjn"
+			},
+			{
+				"author": "nikita",
+				"text": "Lorem Ipsum eaeg qaeglknln qaelgknlk qglknlknqeg qkneglkn w;glknlkn qg;lknlkjn"
+			}
+		]
+	} 
+]

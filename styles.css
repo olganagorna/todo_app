@@ -1,0 +1,7 @@
+.com_number{
+	background: green;
+	border-radius: 10px;
+	min-width: 23px;
+    display: inline-block;
+    color: white;
+}

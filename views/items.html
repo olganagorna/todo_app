@@ -1,0 +1,15 @@
+<div ng-controller="ItemsController"></div>
+<h1>Items</h1>
+<!-- <a href="#/views/comments">Comments</a> -->
+<form ng-submit="addItem()" class="todo-form">
+	<input type="text" ng-model="todoText" placeholder="Type name here" />
+	<input type="submit" value="Add new" />
+</form>
+
+<ul>
+	<li ng-repeat="item in items track by $index">
+		{{item.text}}
+		<div class="com_number">{{comments.length}}25</div>
+		<input type="button" value="Delete" ng-model="todo.done" ng-click="removeItem()">
+	</li>
+</ul>
