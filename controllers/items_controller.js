@@ -1,58 +1,38 @@
 angular.module('empeekApp').controller('ItemsController', ItemsCtrl);
  
-ItemsCtrl.$inject = ['$filter', '$scope', '$http', '$rootScope'];
-function ItemsCtrl($filter, $scope, $http, $rootScope) {
+ItemsCtrl.$inject = ['$scope'];
+function ItemsCtrl($scope) {
 
-	$scope.itemsData = [];
-	($scope.getData = function() {
-        $http.get('items.json')
-            .then(successHandler)
-            .catch(errorHandler);
-        function successHandler(data) {
-            $scope.itemsData = data.data;
-            $scope.getData();
-        }
-        function errorHandler(data) {
-            console.log("Can't reload list!");
-        }
-    })();
 
-    $scope.getData = function(){
-    	$scope.saved = localStorage.getItem('items');
-		//$scope.items = (localStorage.getItem('items')!==null) ? JSON.parse($scope.saved) : $scope.itemsData;
-		$scope.items = (localStorage.getItem('todos')!==null) ? JSON.parse($scope.saved) : [ {text: 'Learn AngularJS', done: false}, {text: 'Build an Angular app', done: false} ];
-		localStorage.setItem('items', JSON.stringify($scope.items));
-		$scope.items = $scope.itemsData;
-		console.log($scope.items);
-    };
-
+	$scope.saved = localStorage.getItem('items');
+	$scope.items = (localStorage.getItem('items')!==null) ? JSON.parse($scope.saved) : [];
+	localStorage.setItem('items', JSON.stringify($scope.items));
 	
 	$scope.addItem = function() {
-		alert('add');
 		$scope.items.push({
 			text: $scope.itemText,
+			comments: [],
 			done: false
 		});
 		$scope.itemText = ''; //clear the input after adding
 		localStorage.setItem('items', JSON.stringify($scope.items));
 	};
 
-	$scope.remaining = function() {
-		var count = 0;
-		angular.forEach($scope.items, function(item){
-			count+= item.done ? 0 : 1;
-		});
-		return count;
-	};
-
-	$scope.removeItem = function() {
-		alert(1);
-		var olditems = $scope.items;
-		$scope.items = [];
-		angular.forEach(olditems, function(item){
-			if (!item.done)
-				$scope.items.push(item);
-		});
+	$scope.removeItem = function (index) {
+		var item_to_delete = $scope.items[index];
+		$scope.items.splice(index, 1);
 		localStorage.setItem('items', JSON.stringify($scope.items));
 	};
+	$scope.active = 0;
+	$scope.select= function(index) {
+       $scope.active = index;
+    };
+	$scope.comments = function(){
+		var count = 0;
+		angular.forEach($scope.items.comments, function(item){
+			count+= 1;
+		});
+		return count;
+		console.log(count);
+	}
 }
