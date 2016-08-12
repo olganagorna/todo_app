@@ -1,5 +1,5 @@
 angular
-    .module("empeekApp")
+    .module("todoApp")
     .config(config);
 function config($routeProvider) {
     $routeProvider
@@ -8,7 +8,7 @@ function config($routeProvider) {
 	        controller: 'CommentsController',
 	    })
 	    
-	    .when('/views/items', {
+	    .when('/items', {
 	        controller: 'ItemsController',
 	        controllerAs: 'ItemsCtrl',
 	        templateUrl: 'views/items.html',

@@ -1,21 +1,22 @@
-angular.module('empeekApp').controller('ItemsController', ItemsCtrl);
+angular.module('todoApp').controller('ItemsController', ItemsCtrl);
  
 ItemsCtrl.$inject = ['$scope'];
 function ItemsCtrl($scope) {
-
-
+	$scope.comments = [];
 	$scope.saved = localStorage.getItem('items');
 	$scope.items = (localStorage.getItem('items')!==null) ? JSON.parse($scope.saved) : [];
 	localStorage.setItem('items', JSON.stringify($scope.items));
-	
 	$scope.addItem = function() {
-		$scope.items.push({
-			text: $scope.itemText,
-			comments: [],
-			done: false
-		});
-		$scope.itemText = ''; //clear the input after adding
-		localStorage.setItem('items', JSON.stringify($scope.items));
+		if($scope.itemText!==undefined || $scope.itemText!==''){
+			$scope.items.push({
+				text: $scope.itemText,
+				comments: [],
+				done: false
+			});
+			$scope.itemText = ''; //clear the input after adding
+			localStorage.setItem('items', JSON.stringify($scope.items));
+		}
+		
 	};
 
 	$scope.removeItem = function (index) {
@@ -27,12 +28,18 @@ function ItemsCtrl($scope) {
 	$scope.select= function(index) {
        $scope.active = index;
     };
-	$scope.comments = function(){
-		var count = 0;
-		angular.forEach($scope.items.comments, function(item){
-			count+= 1;
-		});
-		return count;
-		console.log(count);
-	}
+
+    $scope.addComment = function(index) {
+    	if($scope.comments[index]!==undefined || $scope.comments[index]!==''){
+			$scope.items[index].comments.push({
+				text: $scope.comments[index].value,
+				userpic: $scope.pic
+			});
+			$scope.comments[index].value = '';
+			localStorage.setItem('items', JSON.stringify($scope.items));
+		} else{
+			return false;
+		}
+	};
+
 }

@@ -1,15 +1,32 @@
-<div ng-controller="ItemsController"></div>
-<h1>Items</h1>
-<!-- <a href="#/views/comments">Comments</a> -->
-<form ng-submit="addItem()" class="todo-form">
-	<input type="text" ng-model="itemText" placeholder="Type name here" />
-	<input type="submit" value="Add new" />
-</form>
-
-<ul>
-	<li ng-repeat="item in items track by $index" ng-click="select($index)" ng-class="{active: $index == active}">
-		{{item.text}}
-		<div class="com_number">{{comments.length}}</div>
-		<input type="button" value="Delete" ng-click="removeItem($index)">
-	</li>
-</ul>
+<div ng-controller="ItemsController as ItemsCtrl">
+	<div class="items">
+		<h2 class="heading">Items</h2>
+		<form ng-submit="addItem()" class="items_form">
+			<input type="text" ng-model="itemText" placeholder="Type name here..." />
+			<input type="submit" value="Add new" />
+		</form>
+		<ul>
+			<li ng-repeat="item in items track by $index" ng-click="select($index)"  ng-class="{active: $index == active}">
+				<a href=""  ng-init="ItemsCtrl.tab = 0" ng-click="ItemsCtrl.tab = $index">	  {{item.text}}
+					<span class="com_number">{{item.comments.length}}</span>
+				</a>
+				
+				<input type="button" value="Delete" ng-click="removeItem($index)">
+			</li>
+		</ul>
+	</div>
+	<div class="comments">
+		<div ng-repeat="item in items track by $index" ng-show="ItemsCtrl.tab === $index">
+			<h2 class="heading">Comments # {{$index + 1}}</h2>
+			<div  ng-repeat="comment in item.comments track by $index" class="comment">
+			<div class="userpic">{{comment.pic}}</div>
+			<p>{{comment.text}}</p>
+			</div>
+			<form ng-enter="addComment($index)" class="comment_form">
+				<div class="userpic"></div>
+				<textarea ng-model="comments[$index].value"></textarea>
+			</form>
+		</div>
+		
+	</div>
+</div>
