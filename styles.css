@@ -1,7 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+
 *{
 	margin: 0;
 	padding: 0;
+}
+html{
+	background: #f9f9f9;
 }
 body{
 	font-family: 'Open Sans', sans-serif;
@@ -43,10 +47,9 @@ nav a{
 	left: 270px;
 	position: relative;
 	float: left;
-	background: #f9f9f9;
 }
 .panel{
-	position: absolute;
+	position: fixed;
 	left: 0;
 	top: 0;
 	height: 100vh;
@@ -70,12 +73,15 @@ nav a{
 .items input{
 	height: 37px;
 	border-radius: 3px;
-	
+}
+.items .heading{
+	margin-bottom: 15px;
 }
 .items input[type="text"]{
+	height: 35px;
 	border: 1px solid #bdccd4;
 	padding: 0 10px;
-	width: 290px;
+	width: calc(100% - 160px);
 }
 .items input[type="submit"]{
 	background: #27ccc0;

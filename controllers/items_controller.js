@@ -3,6 +3,7 @@ angular.module('todoApp').controller('ItemsController', ItemsCtrl);
 ItemsCtrl.$inject = ['$scope'];
 function ItemsCtrl($scope) {
 	$scope.comments = [];
+	$scope.active = 0;
 	$scope.saved = localStorage.getItem('items');
 	$scope.items = (localStorage.getItem('items')!==null) ? JSON.parse($scope.saved) : [];
 	localStorage.setItem('items', JSON.stringify($scope.items));
@@ -19,11 +20,10 @@ function ItemsCtrl($scope) {
 	};
 
 	$scope.removeItem = function (index) {
-		var item_to_delete = $scope.items[index];
 		$scope.items.splice(index, 1);
 		localStorage.setItem('items', JSON.stringify($scope.items));
 	};
-	$scope.active = 0;
+
 	$scope.select= function(index) {
        $scope.active = index;
     };
