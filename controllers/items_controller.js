@@ -7,16 +7,15 @@ function ItemsCtrl($scope) {
 	$scope.items = (localStorage.getItem('items')!==null) ? JSON.parse($scope.saved) : [];
 	localStorage.setItem('items', JSON.stringify($scope.items));
 	$scope.addItem = function() {
-		if($scope.itemText!==undefined || $scope.itemText!==''){
+		if($scope.itemText!==undefined && $scope.itemText!==''){
 			$scope.items.push({
 				text: $scope.itemText,
 				comments: [],
 				done: false
 			});
-			$scope.itemText = ''; //clear the input after adding
+			$scope.itemText = '';
 			localStorage.setItem('items', JSON.stringify($scope.items));
 		}
-		
 	};
 
 	$scope.removeItem = function (index) {
@@ -30,15 +29,13 @@ function ItemsCtrl($scope) {
     };
 
     $scope.addComment = function(index) {
-    	if($scope.comments[index]!==undefined || $scope.comments[index]!==''){
+    	if($scope.comments[index]!==undefined && $scope.comments[index].value!==''){
 			$scope.items[index].comments.push({
 				text: $scope.comments[index].value,
 				userpic: $scope.pic
 			});
 			$scope.comments[index].value = '';
 			localStorage.setItem('items', JSON.stringify($scope.items));
-		} else{
-			return false;
 		}
 	};
 

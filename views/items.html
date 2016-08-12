@@ -10,12 +10,11 @@
 				<a href=""  ng-init="ItemsCtrl.tab = 0" ng-click="ItemsCtrl.tab = $index">	  {{item.text}}
 					<span class="com_number">{{item.comments.length}}</span>
 				</a>
-				
 				<input type="button" value="Delete" ng-click="removeItem($index)">
 			</li>
 		</ul>
 	</div>
-	<div class="comments">
+	<div class="comments" ng-show="items.length > 0">
 		<div ng-repeat="item in items track by $index" ng-show="ItemsCtrl.tab === $index">
 			<h2 class="heading">Comments # {{$index + 1}}</h2>
 			<div  ng-repeat="comment in item.comments track by $index" class="comment">
