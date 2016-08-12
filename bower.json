@@ -1,18 +1,15 @@
 {
-  "name": "Empeek",
+  "name": "Empeek todo_app",
   "description": "Test task",
   "main": "",
   "authors": [
     "Olga Nagorna"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/olganagorna/empeek",
+  "homepage": "https://github.com/olganagorna/todo_app",
   "ignore": [
     "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "bower_components"
   ],
   "dependencies": {
     "angular": "1.5.8",
